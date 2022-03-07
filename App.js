@@ -8,7 +8,7 @@ import Home from './Home.js';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Login from './login';
+import Login from './login.js';
 
 // import Icons from "./Icons";
 const Tab = createMaterialBottomTabNavigator();
@@ -61,7 +61,7 @@ export default function App() {
 
 
 } else {
-  return <Login/>;
+  return <Login setUserLoggedIn = {setUserLoggedIn}/>;
 } 
 }
 

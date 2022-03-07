@@ -1,23 +1,34 @@
-import React from "react";
-import { SafeAreaView, StyleSheet, TextInput } from "react-native";
-
-const Login = () => {
-  const [phonenumber, onChangeNumber] = React.useState("Useless Text");
+import React, { useState } from "react";
+import { SafeAreaView, StyleSheet, TextInput, Button } from "react-native";
+const Login = (props) => {
+  const [phonenumber, onChangeNumber] = React.useState(null);
   const [otp, onChangeOtp] = React.useState(null);
 
   return (
     <SafeAreaView>
       <TextInput
         style={styles.input}
-        onChangeNumber={onChangeNumber}
+        onChangeText={(phonenumber) => onChangeNumber(phonenumber)}
         value={phonenumber}
+        placeholder="phone number"
+        keyboardType="numeric"
+      />
+       <Button
+        title="Get OTP"
+        color="#00000"
+        onPress={() => callingApi(phonenumber)}
       />
       <TextInput
         style={styles.input}
-        onChangeNumber={onChangeOtp}
+        onChangeText={(otp) => onChangeOtp(otp)}
         value={otp}
         placeholder="one-time password"
         keyboardType="numeric"
+      />
+      <Button
+        title="Login"
+        color="#00000"
+        onPress={() => callingApi2(phonenumber, otp, props.setUserLoggedIn)}
       />
     </SafeAreaView>
   );
@@ -34,13 +45,28 @@ const styles = StyleSheet.create({
 
 export default Login;
 
-
-fetch('https://dev.stedi.me/twofactorlogin/'+phonenumber, {
-  method: 'POST',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/text'
+const callingApi = (phonenumber) => {
+  fetch('https://dev.stedi.me/twofactorlogin/'+phonenumber, {
+    method: 'POST',
+      headers: {
+        Accept: 'application/json',
+          'Content-Type': 'application/text'
   },
   });
+}
 
+const callingApi2 = (phonenumber, otp, setUserLoggedIn) => {
+  setUserLoggedIn(true);
+  fetch('https://dev.stedi.me/twofactorlogin', {
+    method: 'POST',
+      headers: {
+       Accept: 'application/json',
+        'Content-Type': 'application/text'
+    },
+      body: JSON.stringify({
+        phoneNumber: phonenumber,
+        oneTimePassword: otp
+      })
+    });
+  }
 
