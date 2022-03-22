@@ -1,23 +1,23 @@
-import React from "react";
-import { StyleSheet, Text, View, Image } from 'react-native';
+import React, { useContext } from "react";
+import { StyleSheet, Text, View, Image } from "react-native";
+import { UserContext } from "./App";
 
 function AppName() {
-    return (
-      <View style={styles.appName}>
-        <Text style={styles.text}>STEDI Balance</Text>
-      </View>
-    );
-  }
+  const { usersName } = useContext(UserContext);
+  return (
+    (<View style={styles.appName}></View>), (<Text> Welcome! {usersName}</Text>)
+  );
+}
 
-export default AppName
+export default AppName;
 
 const styles = StyleSheet.create({
   appName: {
-    paddingLeft:20,
+    paddingLeft: 20,
   },
   text: {
-    color: 'white',
-    fontWeight: '600',
-    fontSize: 30
-  }
-})
+    color: "white",
+    fontWeight: "600",
+    fontSize: 30,
+  },
+});
