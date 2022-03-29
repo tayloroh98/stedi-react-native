@@ -77,7 +77,7 @@ const callingApi2 = async (phonenumber, otp, setUserLoggedIn, setUsersName) => {
   });
   const token = await response.text();
 
-  console.log("token", token);
+  // console.log("token", token);
   const response2 = await fetch("https://dev.stedi.me/validate/" + token, {
     method: "GET",
     headers: {

@@ -13,10 +13,7 @@ import Setting from "./Setting.js";
 
 // import Icons from "./Icons";
 const Tab = createMaterialBottomTabNavigator();
-export const UserContext = React.createContext({
-  usersName: null,
-  setUsersName: () => {},
-});
+export const UserContext = React.createContext({ usersName: null });
 
 export default function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -24,7 +21,7 @@ export default function App() {
 
   if (userLoggedIn) {
     return (
-      <UserContext.Provider value={{ usersName, setUsersName }}>
+      <UserContext.Provider value={{ usersName }}>
         <NavigationContainer>
           <Tab.Navigator
             initialRouteName="Home"

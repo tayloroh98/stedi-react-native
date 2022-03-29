@@ -3,9 +3,10 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { UserContext } from "./App";
 
 function AppName() {
-  const { usersName } = useContext(UserContext);
+  const {usersName} = useContext(UserContext);
   return (
-    (<View style={styles.appName}></View>), (<Text> Welcome! {usersName}</Text>)
+    (<View style={styles.appName}></View>),
+    (<Text> Welcome! {usersName}</Text>)
   );
 }
 
